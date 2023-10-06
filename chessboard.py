@@ -16,5 +16,19 @@ class Chessboard:
             self.status[x][y] = player_num
             return True
 
-    def is_win(self, player_num):
-        pass
+    def check_win(self, player_num):
+        for row in self.status:
+            if all(cell == player_num for cell in row):
+                return True
+
+        for col in range(3):
+            if all(row[col] == player_num for row in self.status):
+                return True
+
+        if all(self.status[i][i] == player_num for i in range(3)):
+            return True
+
+        if all(self.status[i][2 - i] == player_num for i in range(3)):
+            return True
+
+        return False
