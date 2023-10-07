@@ -24,20 +24,20 @@ def select(the_node, c, n0, layer):
     return random.choice(ucb)
 
 
-def rollout(the_node, robot_num, player_num, layer):
-    if layer:
-        player1_num = robot_num
-        player2_num = player_num
-    else:
-        player1_num = player_num
-        player2_num = robot_num
+def rollout(the_node, robot_num, the_player_num, layer):
+    # if layer:
+    #     player1_num = robot_num
+    #     player2_num = player_num
+    # else:
+    #     player1_num = player_num
+    #     player2_num = robot_num
 
     board = chessboard.Chessboard(the_node.status)
     while True:
         if layer:
-            player_num = player1_num
+            player_num = the_player_num
         else:
-            player_num = player2_num
+            player_num = robot_num
         tmp_l = []
         for i in range(len(board.status)):
             for j in range(len(board.status[i])):
@@ -49,9 +49,9 @@ def rollout(the_node, robot_num, player_num, layer):
         board.status[next_step[0]][next_step[1]] = player_num
         if board.check_win(player_num):
             if player_num == robot_num:
-                return 1
+                return 10
             else:
-                return -1
+                return -10
         layer = not layer
 
 

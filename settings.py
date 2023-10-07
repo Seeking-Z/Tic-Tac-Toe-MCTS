@@ -1,7 +1,7 @@
 class Settings:
     def __init__(self):
         self.robot = True
-        self.goes_first = True
+        self.goes_first = False
 
-        self.x = 100000
-        self.c = 100
+        self.x = 20000
+        self.c = 2
