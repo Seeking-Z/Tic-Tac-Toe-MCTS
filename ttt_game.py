@@ -11,16 +11,21 @@ def ttt_game(robot=False, goes_first=True):
     else:
         player1 = player.Player(1)
         player2 = player.Player(2, robot)
+    for row in board.get_status():
+        print(row)
+    print("============")
 
     while True:
-        for row in board.get_status():
-            print(row)
         if flag:
             the_player = player1
         else:
             the_player = player2
 
         the_player.make_a_move(board)
+
+        for row in board.get_status():
+            print(row)
+        print("============")
 
         if board.check_win(the_player.player_num):
             if flag:
@@ -30,3 +35,6 @@ def ttt_game(robot=False, goes_first=True):
             print(f"玩家{p}获胜")
             break
         flag = not flag
+
+
+ttt_game(True, False)

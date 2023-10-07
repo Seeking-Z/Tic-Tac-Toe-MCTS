@@ -1,9 +1,12 @@
+import copy
+
+
 class Chessboard:
 
     def __init__(self, init_status=None):
         if init_status is None:
             init_status = [[0] * 3 for _ in range(3)]
-        self.status = init_status
+        self.status = copy.deepcopy(init_status)
 
     def get_status(self):
         return self.status

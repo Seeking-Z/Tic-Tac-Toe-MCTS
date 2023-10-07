@@ -1,3 +1,6 @@
+import MCTS
+
+
 def get_input():
     while True:
         input_str = input("请输入 x y （使用空格分割）:")
@@ -16,7 +19,12 @@ class Player:
 
     def make_a_move(self, board):
         if self.robot:
-            pass
+            print("robot:")
+            next_status = MCTS.mcts(board.status, 100000, 10000, self.player_num)
+            for i in range(len(next_status.status)):
+                for j in range(len(next_status.status[i])):
+                    if board.status[i][j] != next_status.status[i][j]:
+                        board.status[i][j] = next_status.status[i][j]
         else:
             while True:
                 x, y = get_input()
