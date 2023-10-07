@@ -8,14 +8,6 @@ class Chessboard:
     def get_status(self):
         return self.status
 
-    def make_a_move(self, x, y, player_num):
-        if self.status[x][y] == 0:
-            print("请在空位落子")
-            return False
-        else:
-            self.status[x][y] = player_num
-            return True
-
     def check_win(self, player_num):
         for row in self.status:
             if all(cell == player_num for cell in row):
