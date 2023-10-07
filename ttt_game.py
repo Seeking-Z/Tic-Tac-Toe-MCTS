@@ -30,5 +30,3 @@ def ttt_game(robot=False, goes_first=True):
             print(f"玩家{p}获胜")
             break
         flag = not flag
-
-ttt_game()
