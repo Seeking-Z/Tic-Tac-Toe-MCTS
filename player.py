@@ -1,4 +1,5 @@
 import MCTS
+import time
 
 
 def get_input():
@@ -16,20 +17,16 @@ class Player:
     def __init__(self, player_num, robot=False):
         self.player_num = player_num
         self.robot = robot
+        self.total_time = 0
+        self.step_time = 0
 
-    def make_a_move(self, board):
+    def make_a_move(self, board, settings, x=None, y=None):
+        start_time = time.time()
         if self.robot:
             print("robot:")
-            next_status = MCTS.mcts(board.status, 100000, 10000, self.player_num)
-            for i in range(len(next_status.status)):
-                for j in range(len(next_status.status[i])):
-                    if board.status[i][j] != next_status.status[i][j]:
-                        board.status[i][j] = next_status.status[i][j]
-        else:
-            while True:
-                x, y = get_input()
-                if board.status[x][y] != 0:
-                    print("请在空位落子")
-                else:
-                    board.status[x][y] = self.player_num
-                    return True
+            x, y = MCTS.mcts(board.status, settings.x, settings.c, self.player_num)
+        board.status[x][y] = self.player_num
+        end_time = time.time()
+        self.step_time = end_time - start_time
+        self.total_time += self.step_time
+        return x, y

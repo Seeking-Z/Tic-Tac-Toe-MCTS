@@ -1,2 +1,3 @@
-a = None
-print(not a)
+import time
+
+print(time.time())

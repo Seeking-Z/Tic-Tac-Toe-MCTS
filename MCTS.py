@@ -77,10 +77,10 @@ def back_propagate(the_node, t):
 def mcts(status, x, c, robot_num):
     i = 0
     root_node = node.Node(status)
-    if robot_num == 1:
-        player_num = 2
+    if robot_num == 'X':
+        player_num = 'O'
     else:
-        player_num = 1
+        player_num = 'X'
 
     while i < x:
         n0 = root_node.n
@@ -106,4 +106,8 @@ def mcts(status, x, c, robot_num):
 
     max_value = max(root_node.child, key=lambda y: y.n)
     n_max = [y for y in root_node.child if max_value.n == y.n]
-    return random.choice(n_max)
+    next_step_node = random.choice(n_max)
+    for i in range(len(status)):
+        for j in range(len(status[i])):
+            if status[i][j] != next_step_node.status[i][j]:
+                return i, j

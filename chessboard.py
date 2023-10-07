@@ -27,3 +27,9 @@ class Chessboard:
             return True
 
         return False
+
+    def check_draw(self):
+        for i in self.status:
+            if 0 in i:
+                return False
+        return True
