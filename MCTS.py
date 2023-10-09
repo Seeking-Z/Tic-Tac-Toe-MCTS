@@ -16,10 +16,11 @@ def get_ucb(the_node, c, n0):
 def select(the_node, c, n0, layer):
     for i in range(len(the_node.child)):
         the_node.child[i].ucb = get_ucb(the_node.child[i], c, n0)
-    if layer:
-        value = max(the_node.child, key=lambda x: x.ucb)
-    else:
-        value = min(the_node.child, key=lambda x: x.ucb)
+    # if layer:
+    #     value = max(the_node.child, key=lambda x: x.ucb)
+    # else:
+    #     value = min(the_node.child, key=lambda x: x.ucb)
+    value = max(the_node.child, key=lambda x: x.ucb)
     ucb = [x for x in the_node.child if value.ucb == x.ucb]
     return random.choice(ucb)
 

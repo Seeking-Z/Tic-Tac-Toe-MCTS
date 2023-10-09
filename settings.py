@@ -4,4 +4,4 @@ class Settings:
         self.goes_first = False
 
         self.x = 20000
-        self.c = 2
+        self.c = 20
